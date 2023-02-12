@@ -21,13 +21,18 @@ lvim.colorscheme = "sonokai"
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
-lvim.keys.insert_mode["jk"] = "<Esc>"
 lvim.keys.normal_mode['\''] = ":"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode['n'] = "n nzzv"
 lvim.keys.normal_mode['N'] = "N Nzzv"
 lvim.keys.normal_mode['<C-d>'] = "<C-d>zz"
 lvim.keys.normal_mode['<C-u>'] = "<C-u>zz"
+-- quickly move line up or down
+lvim.keys.normal_mode['<leader>['] = ":<c-u>execute 'move -1-'. v:count1<cr>"
+lvim.keys.normal_mode['<leader>]'] = ":<c-u>execute 'move +'. v:count1<cr>"
+-- quickly add new lines
+lvim.keys.normal_mode['[<space>'] = ":<c-u>put! =repeat(nr2char(10), v:count1)<cr>"
+lvim.keys.normal_mode[']<space>'] = ":<c-u>put =repeat(nr2char(10), v:count1)<cr>"
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- unmap a default keymapping
@@ -35,7 +40,11 @@ lvim.keys.normal_mode['<C-u>'] = "<C-u>zz"
 -- override a default keymapping
 -- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
 -- inoremap <C-h> <Left>
---
+lvim.keys.insert_mode["jk"] = "<Esc>"
+lvim.keys.insert_mode["<C-h>"] = "<Left>"
+lvim.keys.insert_mode["<C-l>"] = "<Right>"
+lvim.keys.insert_mode["<C-j>"] = "<Down>"
+lvim.keys.insert_mode["<C-k>"] = "<Up>"
 --
 --
 -- inoremap <C-l> <Right>
@@ -51,13 +60,6 @@ lvim.keys.normal_mode['<C-u>'] = "<C-u>zz"
 -- nnoremap <C-k> <C-w>k
 -- nnoremap <C-s> :w <CR>
 
--- " quickly move line up or down
--- nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
--- nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
-
--- " quickly add new lines
--- nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>
--- nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
 
 
 
@@ -215,7 +217,6 @@ lvim.plugins = {
     {"windwp/nvim-ts-autotag"},
     {"akinsho/flutter-tools.nvim"},
     {"f-person/git-blame.nvim"},
-    {"lewis6991/gitsigns.nvim"},
 }
 --
 --
